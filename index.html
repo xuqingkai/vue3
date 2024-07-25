@@ -186,6 +186,9 @@
     //UIkit.util.on('#left-menu', 'hide', function () { document.getElementById('toggle-menu').setAttribute('class','rate90'); });
     const { createApp, ref } = Vue;
     var app = createApp({
+        props: {
+
+        },
         data() {
             return {
                 nick_name: ref('张海峰'),
@@ -193,31 +196,27 @@
                 count: 1
             }
         },
-
-        created(){
-            
-        },
-        props: {
-            
-        },
         computed: {
             dblCount() {
                 return this.count * 2
             },
-        },
-        mounted() {
-            console.log('mounted:'+this.count) 
-        },
-        methods: {
-            plus() {
-                this.count++
-            }
         },
         watch: {
             //侦听nick_name值的变动
             nick_name(val, oldVal) {
               console.log(`new: ${val}, old: ${oldVal}`)
             }
+        },
+        methods: {
+            plus() {
+                this.count++
+            }
+        },
+        created(){
+            
+        },
+        mounted() {
+            console.log('mounted:'+this.count) 
         },
     });
     //app.component('TodoDeleteButton', TodoDeleteButton)//这使得 TodoDeleteButton 在应用的任何地方都是可用的
