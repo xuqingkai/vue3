@@ -1,0 +1,227 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>面包屑导航</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.20.8/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.8/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.8/dist/js/uikit-icons.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+    .uk-navbar-item,.uk-navbar-nav>li>a,.uk-navbar-toggle {
+        min-height:50px;
+    }
+    .uk-subnav>*{padding-left:0px;}
+    i.rate90{
+        transform: rotate(90deg);
+    }
+    i.rate-90{
+        transform: rotate(-90deg);
+    }
+    .left-menu .uk-parent {min-width:180px;}
+    .left-menu .uk-parent .uk-nav-sub li{padding:4px 0;}
+    </style>
+</head>
+<body style="background:#eee;">
+<div id="vue3-app" uk-grid class="uk-grid-collapse">
+    <div style="width:1px;background:#f00;" uk-toggle="target:.left-menu;"></div>
+    <div class="uk-width-auto uk-background-primary uk-light" style="">
+        <ul class="left-menu uk-nav-default uk-padding-small uk-padding-remove-top uk-visible@m" uk-nav uk-sticky>
+            <li class="uk-nav-header"><a class="uk-navbar-item uk-logo" href="/"><img src="../svg/youlaiyouqu.net/logo.svg" style="height: 35px;" alt=""></a></li>
+            <li class="uk-parent uk-active uk-open">
+                <a href="#">新闻<span uk-nav-parent-icon></span></a>
+                <ul class="uk-nav-sub uk-nav-secondary">
+                    <li><a href="./article.html">国际新闻</a></li>
+                    <li>
+                        <a href="#">国内新闻</a>
+                        <ul>
+                             <li><a href="#">社会新闻</a></li>
+                             <li><a href="#">娱乐新闻</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <a href="#">产品 <span uk-nav-parent-icon></span></a>
+                <ul class="uk-nav-sub uk-nav-secondary">
+                        <li><a href="#">数码产品</a></li>
+                        <li><a href="#">虚拟产品</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-expand">
+        <div id="topnav" uk-navbar uk-sticky class="uk-background-muted">
+            <div class="uk-navbar-left">
+                <ul class="uk-subnav uk-background-muted" style="margin:0;">
+                    <li><a href="javascript:void(0);" uk-toggle="target:.left-menu;">
+                        <i uk-icon="upload" class="left-menu rate-90"></i>
+                        <i uk-icon="upload" class="left-menu rate90" hidden></i>
+                        </a></li>
+                    <li><a href="#" class="uk-icon uk-icon-image" style="background-image: url(../svg/common/home.svg);margin-left:5px;"><i></i></a>
+                    </li>
+                    <li>
+                        <a uk-icon="triangle-right"></a>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">新闻</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#">产品</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">国内</a></li>
+                    <li>
+                        <a uk-icon="triangle-right"></a>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">娱乐</a></li>
+                                <li><a href="#">社会</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">公卫</a></li>
+                    <li>
+                        <a uk-icon="triangle-right"></a>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">列表</a></li>
+                                <li class="uk-nav-header">新建</li>
+                                <li><a href="#">编辑</a></li>
+                                <li><a href="#">详情</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/?detail">详情</a></li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active">
+                        <a href="#" uk-icon="triangle-down">{{nick_name}}<span class="uk-badge">{{message_count}}</span></a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-nav-header">用户组：管理员</li>
+                                <li><a href="#">账户设置</a></li>
+                                <li><a href="#">修改密码</a></li>
+                                <li><a href="#">系统设置</a></li>
+                                <li class="uk-nav-header">其他</li>
+                                <li><span>最后登录：2024-04-25</span></li>
+                                <li><a href="#">切换账号</a></li>
+                                <li><a href="#">安全退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            <ul class="uk-list uk-list-striped">
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li><a href="./article.html">List item 1</a></li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    //UIkit.util.on('#left-menu', 'show', function () { document.getElementById('toggle-menu').setAttribute('class','rate-90'); });
+    //UIkit.util.on('#left-menu', 'hide', function () { document.getElementById('toggle-menu').setAttribute('class','rate90'); });
+    const { createApp, ref } = Vue;
+    var app = createApp({
+        data() {
+            return {
+                nick_name: ref('张海峰'),
+                message_count : ref(0),
+                count: 1
+            }
+        },
+
+        created(){
+            
+        },
+        props: {
+            
+        },
+        computed: {
+            dblCount() {
+                return this.count * 2
+            },
+        },
+        mounted() {
+            console.log('mounted:'+this.count) 
+        },
+        methods: {
+            plus() {
+                this.count++
+            }
+        },
+        watch: {
+            //侦听nick_name值的变动
+            nick_name(val, oldVal) {
+              console.log(`new: ${val}, old: ${oldVal}`)
+            }
+        },
+    });
+    //app.component('TodoDeleteButton', TodoDeleteButton)//这使得 TodoDeleteButton 在应用的任何地方都是可用的
+    app.mount('#vue3-app')
+</script>
+</body>
+</html>
